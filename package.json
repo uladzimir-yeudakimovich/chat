@@ -1,0 +1,17 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "chat",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Uladzimir Yeudakimovich",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^17.4.0",
+    "mysql": "^2.15.0",
+    "node-static": "^0.7.10",
+    "ws": "^5.1.1"
+  }
+}
