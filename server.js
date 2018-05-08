@@ -38,3 +38,20 @@ http.createServer(function (req, res) {
 
 console.log("Сервер запущен на портах 8080, 8081");
 
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "chat"
+});
+
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  connection.query("SELECT * FROM users", function (err, result) {
+    if (err) throw err;
+    console.log(result);
+  });
+});
