@@ -1,7 +1,15 @@
-const http = require('http');
-const Static = require('node-static');
+const http            = require('http');
+const express         = require('express');
+const app             = express();
+const Static          = require('node-static');
 const WebSocketServer = new require('ws');
-const mysql = require('mysql');
+const mysql           = require('mysql');
+const passport        = require('passport');
+const session         = require('express-session');
+const bodyParser      = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // connected clients
 const clients = {};
@@ -14,36 +22,30 @@ const con = mysql.createConnection({
   database: "chat"
 });
 
-let values = [];
+con.connect(function(err) {
+    if (err) throw err;
+    console.log('MySQL connected!');
+});
 
 // WebSocket-server on port 8081
 const webSocketServer = new WebSocketServer.Server({port: 8081});
 webSocketServer.on('connection', function(ws) {
-
   let id = Math.random();
   clients[id] = ws;
   console.log("new connection " + id);
 
   ws.on('message', function(message) {
+    let values = [];
     values.push([message]);
 
-    if (values.length == 2) {
-      con.connect(function(err) {
-        if (err) throw err;
-        console.log('Connected!');
-        var sql = "INSERT INTO messages (message) VALUES ?";
-        con.query(sql, [values], function (err, result) {
-          if (err) throw err;
-          console.log("Number of records inserted: " + result.affectedRows);
-        });
+    var sql = "INSERT INTO messages (message) VALUES ?";
+    con.query(sql, [values], function (err, result) {
+    console.log("Number of records inserted: " + result.affectedRows);
       });
-    }
+    values.length = 0;
 
-    console.log('received a message ' + values);
-
-    for(let key in clients) {
-      clients[key].send(message);
-    }
+    console.log('received a message ' + message);
+    for(let key in clients) {clients[key].send(message);}
   });
 
   ws.on('close', function() {
@@ -55,18 +57,6 @@ webSocketServer.on('connection', function(ws) {
 
 // normal server (statics) on the port 8080
 const fileServer = new Static.Server('.');
-http.createServer(function (req, res) {
-
-  fileServer.serve(req, res);
-
-}).listen(8080);
+http.createServer((req, res) => fileServer.serve(req, res)).listen(8080);
 
 console.log("The server is running on ports 8080 and 8081");
-
-// con.connect(function(err) {
-//   if (err) throw err;
-//   con.query("SELECT * FROM messages", function (err, result, fields) {
-//     if (err) throw err;
-//     console.log(result);
-//   });
-// });
