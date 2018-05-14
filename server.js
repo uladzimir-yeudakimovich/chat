@@ -10,7 +10,7 @@ const clients = {};
 const con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "0514918a",
   database: "chat"
 });
 
@@ -27,17 +27,16 @@ webSocketServer.on('connection', function(ws) {
   ws.on('message', function(message) {
     values.push([message]);
 
-    if (values.length == 20) {
-      // con.connect(function(err) {
-      //   if (err) throw err;
-      //   console.log('Connected!');
-      //   var sql = "INSERT INTO messages (message) VALUES ?";
-      //   con.query(sql, [values], function (err, result) {
-      //     if (err) throw err;
-      //     console.log("Number of records inserted: " + result.affectedRows);
-      //   });
-      // });
-      values.length = 0;
+    if (values.length == 2) {
+      con.connect(function(err) {
+        if (err) throw err;
+        console.log('Connected!');
+        var sql = "INSERT INTO messages (message) VALUES ?";
+        con.query(sql, [values], function (err, result) {
+          if (err) throw err;
+          console.log("Number of records inserted: " + result.affectedRows);
+        });
+      });
     }
 
     console.log('received a message ' + values);
@@ -64,10 +63,10 @@ http.createServer(function (req, res) {
 
 console.log("The server is running on ports 8080 and 8081");
 
-con.connect(function(err) {
-  if (err) throw err;
-  con.query("SELECT * FROM messages", function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-  });
-});
+// con.connect(function(err) {
+//   if (err) throw err;
+//   con.query("SELECT * FROM messages", function (err, result, fields) {
+//     if (err) throw err;
+//     console.log(result);
+//   });
+// });
