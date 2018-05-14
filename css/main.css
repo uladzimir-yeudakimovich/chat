@@ -25,9 +25,13 @@ header {
 
 main {
   display: flex;
-	justify-content: center;
+	justify-content: space-around;
   align-items: flex-start;
-  margin-top: 2em;
+  margin: 2em 2em 0 2em;
+}
+
+form {
+  width: 35%;
 }
 
 input {
@@ -38,7 +42,9 @@ input {
 
 .output {
   font-size: 2em;
-  margin-left: 1.6em;
+  padding: 1em 2em;
+  background-color: aqua;
+  width: 15%;
 }
 
 footer {
