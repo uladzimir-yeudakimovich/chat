@@ -1,5 +1,5 @@
 if (!window.WebSocket) {
-	document.body.innerHTML = 'WebSocket в этом браузере не поддерживается.';
+	document.body.innerHTML = 'WebSocket this browser does not support.';
 }
 
 // create a connection

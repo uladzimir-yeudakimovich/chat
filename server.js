@@ -1,15 +1,7 @@
 const http            = require('http');
-const express         = require('express');
-const app             = express();
 const Static          = require('node-static');
 const WebSocketServer = new require('ws');
 const mysql           = require('mysql');
-const passport        = require('passport');
-const session         = require('express-session');
-const bodyParser      = require('body-parser');
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // connected clients
 const clients = {};
