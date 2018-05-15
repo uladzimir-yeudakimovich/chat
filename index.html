@@ -11,27 +11,39 @@
 <div class="content">
   <header><h1>CHAT</h1></header>
   <main>
-    <form name="registration">
-      <h1>Sign Up</h1>
-      <p>Please fill in this form to create an account.</p></br>
-      <label for="name"><b>Name</b></label>
-      <input type="text" placeholder="Username" name="username" required>
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
-      <input type="submit" value="Submit"/>
-    </form>
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+    <div id="id01" class="modal">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <form class="modal-content" action="/action_page.php" name="registration">
+        <div class="container">
+          <h1>Sign Up</h1>
+          <p>Please fill in this form to create an account.</p>
+          <label for="name"><b>Name</b></label>
+          <input type="text" placeholder="Username" name="username" required>
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required>
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="email" required>
+          <input type="submit" value="Submit"/>
+        </div>
+      </form>
+    </div>
 
-    <form name="login">
-      <h1>Login</h1>
-      <p>Please fill out this form to enter.</p></br>
-      <label for="login"><b>Login</b></label>
-      <input type="text" placeholder="Enter Login" name="login">
-      <label for="password"><b>Password</b></label>
-      <input type="text" placeholder="Enter Password" name="password">
-      <input type="submit" value="Submit">
-    </form>
+    <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Log In</button>
+    <div id="id02" class="modal">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <form class="modal-content" action="/action_page.php" name="login">
+        <div class="container">
+          <h1>Login</h1>
+          <p>Please fill out this form to enter.</p>
+          <label for="login"><b>Login</b></label>
+          <input type="text" placeholder="Enter Login" name="login">
+          <label for="password"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password">
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
 
     <form name="publish">
       <h1>Send a message</h1></br>

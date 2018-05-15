@@ -2,6 +2,17 @@ if (!window.WebSocket) {
 	document.body.innerHTML = 'WebSocket this browser does not support.';
 }
 
+// Get the modal
+const modal1 = document.getElementById('id01');
+const modal2 = document.getElementById('id02');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 // create a connection
 const socket = new WebSocket("ws://localhost:8081");
 

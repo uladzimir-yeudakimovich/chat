@@ -30,14 +30,76 @@ main {
   margin: 2em 2em 0 2em;
 }
 
-form {
-  width: 35%;
+input[type=text], input[type=password] {
+  width: 95%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  font-size: 2em;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
 }
 
-input {
-  margin: 20px 0;
-  padding: 5px 10px;
-  font-size: 2em;
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+button, input[type=submit] {
+  background-color: aqua;
+  padding: 14px 20px;
+  margin: 8px 0;
+  font-size: 1.8em;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  border-radius: 5%;
+  opacity: 0.9;
+}
+
+button:hover, input[type=submit]:hover {
+  opacity:1;
+  color: azure;
+  background-color: black;
+}
+
+.container {
+  padding: 1.5em;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #474e5d;
+  padding-top: 0.5em;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 4% auto 4% auto;
+  border: 2px solid #888;
+  width: 80%;
+}
+
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: aqua;
+  cursor: pointer;
 }
 
 .output {

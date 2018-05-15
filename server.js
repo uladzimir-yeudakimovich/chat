@@ -5,7 +5,6 @@ const mysql           = require('mysql');
 
 // connected clients
 const clients = {};
-const uid = 0;
 
 // connected mysql
 const con = mysql.createConnection({
