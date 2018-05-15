@@ -5,6 +5,7 @@ const mysql           = require('mysql');
 
 // connected clients
 const clients = {};
+const uid = 0;
 
 // connected mysql
 const con = mysql.createConnection({
@@ -16,7 +17,7 @@ const con = mysql.createConnection({
 
 con.connect(function(err) {
     if (err) throw err;
-    console.log('MySQL connected!');
+    console.log("MySQL connected!");
 });
 
 // WebSocket-server on port 8081
@@ -24,7 +25,7 @@ const webSocketServer = new WebSocketServer.Server({port: 8081});
 webSocketServer.on('connection', function(ws) {
   let id = Math.random();
   clients[id] = ws;
-  console.log("new connection " + id);
+  console.log("New connection: " + id);
 
   ws.on('message', function(message) {
     let values = [];
@@ -36,12 +37,14 @@ webSocketServer.on('connection', function(ws) {
       });
     values.length = 0;
 
-    console.log('received a message ' + message);
-    for(let key in clients) {clients[key].send(message);}
+    console.log("Received a message: " + message);
+    for(let key in clients) {
+      clients[key].send(message);
+    }
   });
 
   ws.on('close', function() {
-    console.log('connection closed ' + id);
+    console.log("Connection closed: " + id);
     delete clients[id];
   });
 

@@ -25,3 +25,17 @@ function showMessage(message) {
   messageElem.appendChild(document.createTextNode(message));
   document.getElementById('subscribe').appendChild(messageElem);
 }
+
+document.forms.registration.onsubmit = function() {
+  let login = this.login.value;
+  let password = this.password.value;
+  let data = {
+      message: "login",
+      user: {
+          username: login,
+          password: password
+          }
+  };
+  ws.send(JSON.stringify(data));
+  return false;
+};

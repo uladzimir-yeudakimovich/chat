@@ -13,7 +13,7 @@
   <main>
     <form name="registration">
       <h1>Sign Up</h1>
-      <p>Please fill in this form to create an account.</p>
+      <p>Please fill in this form to create an account.</p></br>
       <label for="name"><b>Name</b></label>
       <input type="text" placeholder="Username" name="username" required>
       <label for="psw"><b>Password</b></label>
@@ -23,11 +23,21 @@
       <input type="submit" value="Submit"/>
     </form>
 
+    <form name="login">
+      <h1>Login</h1>
+      <p>Please fill out this form to enter.</p></br>
+      <label for="login"><b>Login</b></label>
+      <input type="text" placeholder="Enter Login" name="login">
+      <label for="password"><b>Password</b></label>
+      <input type="text" placeholder="Enter Password" name="password">
+      <input type="submit" value="Submit">
+    </form>
+
     <form name="publish">
-      <h1>Send a message</h1>
-      <p>Please enter your message.</p>
-      <input type="text" name="message"/>
-      <input type="submit" value="Submit"/>
+      <h1>Send a message</h1></br>
+      <p>Please enter your message.</p></br>
+      <input type="text" placeholder="Enter Message" name="message"/>
+      <input type="submit" value="Send"/>
     </form>
 
     <div class="output" id="subscribe">
