@@ -46,7 +46,6 @@ webSocketServer.on('connection', function(ws) {
     console.log("Connection closed: " + id);
     delete clients[id];
   });
-
 });
 
 // normal server (statics) on the port 8080

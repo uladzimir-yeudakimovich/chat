@@ -15,7 +15,7 @@ document.forms.publish.onsubmit = function() {
 // handler of inbound messages
 socket.onmessage = function(event) {
   let incomingMessage = event.data;
-  //showMessage(incomingMessage);
+  showMessage(incomingMessage);
 };
 
 // show the message in div#subscribe
