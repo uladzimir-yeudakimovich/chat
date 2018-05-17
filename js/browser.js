@@ -27,6 +27,7 @@ document.forms.registration.onsubmit = function() {
 
 document.forms.login.onsubmit = function() {
   document.getElementById('id02').style.display = 'none';
+  document.getElementById('messageField').className = '';
 
   let username = this.login.value;
   let password = this.password.value;
