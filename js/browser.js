@@ -7,6 +7,9 @@ const socket = new WebSocket("ws://localhost:8081");
 const uid = 0;
 
 document.forms.registration.onsubmit = function() {
+  document.getElementById('id01').style.display = 'none';
+  document.getElementById('messageField').className = '';
+
   let username = this.username.value;
   let password = this.psw.value;
   let email    = this.email.value;
@@ -23,6 +26,8 @@ document.forms.registration.onsubmit = function() {
 };
 
 document.forms.login.onsubmit = function() {
+  document.getElementById('id02').style.display = 'none';
+
   let username = this.login.value;
   let password = this.password.value;
   let data = {

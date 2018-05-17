@@ -11,9 +11,9 @@
   <div class="content">
     <header><h1>CHAT</h1></header>
     <main>
-      <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+      <button onclick="document.getElementById('id01').style.display='block'">Sign Up</button>
       <div id="id01" class="modal">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span>
         <form class="modal-content" name="registration">
           <div class="container">
             <h1>Sign Up</h1>
@@ -24,14 +24,14 @@
             <input type="password" placeholder="Enter Password" name="psw" required>
             <label for="email"><b>Email</b></label>
             <input type="text" placeholder="Enter Email" name="email" required>
-            <input type="submit" value="Submit" onclick="document.getElementById('id01').style.display='none'"/>
+            <input type="submit" value="Submit"/>
           </div>
         </form>
       </div>
 
-      <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Log In</button>
+      <button onclick="document.getElementById('id02').style.display='block'">Log In</button>
       <div id="id02" class="modal">
-        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close">&times;</span>
         <form class="modal-content" name="login">
           <div class="container">
             <h1>Login</h1>
@@ -40,21 +40,23 @@
             <input type="text" placeholder="Enter Login" name="login">
             <label for="password"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password">
-            <input type="submit" value="Submit" onclick="document.getElementById('id02').style.display='none'">
+            <input type="submit" value="Submit">
           </div>
         </form>
       </div>
 
-      <form name="publish">
-        <h1>Send a message</h1></br>
-        <p>Please enter your message.</p></br>
-        <input type="text" placeholder="Enter Message" name="message"/>
-        <input type="submit" value="Send"/>
-      </form>
+      <section class="messageField" id="messageField">
+        <form name="publish">
+          <h1>Send a message</h1></br>
+          <p>Please enter your message.</p></br>
+          <input type="text" placeholder="Enter Message" name="message"/>
+          <input type="submit" value="Send"/>
+        </form>
 
-      <div class="output" id="subscribe">
-        <h4>Messages:</h4>
-      </div>
+        <div class="output" id="subscribe">
+          <h4>Messages:</h4>
+        </div>
+      </section>
     </main>
   </div>
   <footer><h2>This footer</h2></footer>
