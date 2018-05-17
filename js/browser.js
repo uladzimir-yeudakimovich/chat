@@ -4,6 +4,7 @@ if (!window.WebSocket) {
 
 // create a connection
 const socket = new WebSocket("ws://localhost:8081");
+const uid = 0;
 
 document.forms.registration.onsubmit = function() {
   let username = this.username.value;

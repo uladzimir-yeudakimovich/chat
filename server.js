@@ -29,16 +29,25 @@ wsServer.on('connection', function(ws) {
   console.log("New connection: " + id);
 
   ws.on('message', function(message) {
-    let values = [];
-    values.push([message]);
+    let data = JSON.parse(message);
+    if (data.message === "registration") {
+      let values = [];
+      values.push([data.user.username, data.user.password, data.user.email]);
+      let sql = "INSERT INTO users (username, password, email) VALUES ?";
+      connection.query(sql, [values], function (err, result) {
+        console.log("1 record inserted");
+      });
+    }
+    if (data.message === "message") {
+      let values = [];
+      values.push([data.user.value]);
+      let sql = "INSERT INTO messages (message) VALUES ?";
+      connection.query(sql, [values], function (err, result) {
+        console.log("Number of records inserted: " + result.affectedRows);
+      });
+    }
 
-    let sql = "INSERT INTO messages (message) VALUES ?";
-    connection.query(sql, [values], function (err, result) {
-      console.log("Number of records inserted: " + result.affectedRows);
-    });
-    values.length = 0;
-
-    console.log("Received a message: " + message);
+    console.log("Received a message: " + data.user.value);
     for(let key in clients) {
       clients[key].send(message);
     }
