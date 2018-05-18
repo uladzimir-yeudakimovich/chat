@@ -39,19 +39,25 @@ wsServer.on('connection', function(ws) {
     }
 
     if (data.message === "login" || data.message === "message") {
+      let idd = 0;
       connection.query(("SELECT * FROM users WHERE username = " + mysql.escape(data.user.username)), function (err, result) {
-        for (let i = 0; i < result.length; i++) {
-          if(result[i].password == data.user.password) {
-            userName = (`The user ${result[0].username} logged in`);
-            idd = result[i].uid;
-          } else {console.log('Wrong password entered');}
+        if (result.length == 0) {console.log(`User with the name ${data.user.username} does not exist`);
+        } else {
+          for (let i = 0; i < result.length; i++) {
+            if(result[i].password == data.user.password) {
+              userName = (`The user ${result[0].username} logged in`);
+              idd = result[i].uid;
+            } else {console.log('Wrong password entered');}
+          }
+          console.log(userName);
         }
-        console.log(userName);
 
-        connection.query(("INSERT INTO messages (message, uid_fk) VALUES ?"), [[[data.user.value, idd]]], function (err, result) {
-          console.log(`Message ${data.user.value} added to database`);
-        });
-        console.log("Received a message: " + data.user.value);
+        if (idd > 0) {
+          connection.query(("INSERT INTO messages (message, uid_fk) VALUES ?"), [[[data.user.value, idd]]], function (err, result) {
+            console.log(`Message ${data.user.value} added to database`);
+          });
+          console.log("Received a message: " + data.user.value);
+        }
       });
     }
 
