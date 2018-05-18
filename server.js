@@ -38,7 +38,7 @@ wsServer.on('connection', function(ws) {
       console.log("Added a new user: " + data.user.username);
     }
 
-    if (data.message === "login") {
+    if (data.message === "login" || data.message === "message") {
       connection.query(("SELECT * FROM users WHERE username = " + mysql.escape(data.user.username)), function (err, result) {
         for (let i = 0; i < result.length; i++) {
           if(result[i].password == data.user.password) {
@@ -47,16 +47,12 @@ wsServer.on('connection', function(ws) {
           } else {console.log('Wrong password entered');}
         }
         console.log(userName);
-        console.log('User id ' + idd);
-      });
-    }
 
-    if (data.message === "message") {
-      //console.log(uid);
-      connection.query(("INSERT INTO messages (message, uid_fk) VALUES ?"), [[[data.user.value, data.user.uid]]], function (err, result) {
-        console.log(`Message ${data.user.value} added to database`);
+        connection.query(("INSERT INTO messages (message, uid_fk) VALUES ?"), [[[data.user.value, idd]]], function (err, result) {
+          console.log(`Message ${data.user.value} added to database`);
+        });
+        console.log("Received a message: " + data.user.value);
       });
-      console.log("Received a message: " + data.user.value);
     }
 
     for(let key in clients) {
