@@ -30,41 +30,31 @@ wsServer.on('connection', function(ws) {
 
   ws.on('message', function(message) {
     let data = JSON.parse(message);
-    var uid = 0;
 
     if (data.message === "registration") {
-      let values = [];
-      values.push([data.user.username, data.user.password, data.user.email]);
-      let sql = "INSERT INTO users (username, password, email) VALUES ?";
-      connection.query(sql, [values], function (err, result) {
+      connection.query(("INSERT INTO users (username, password, email) VALUES ?"), [[[data.user.username, data.user.password, data.user.email]]], function (err, result) {
         console.log("User added to database");
       });
       console.log("Added a new user: " + data.user.username);
     }
 
     if (data.message === "login") {
-      let values = '';
-      values = data.user.username;
-      let sql = "SELECT * FROM users WHERE username = " + mysql.escape(values);
-      connection.query(sql, [values], function (err, result) {
+      connection.query(("SELECT * FROM users WHERE username = " + mysql.escape(data.user.username)), function (err, result) {
         for (let i = 0; i < result.length; i++) {
           if(result[i].password == data.user.password) {
-            console.log(`The user ${result[0].username} logged in`);
-            uid = result[i].uid;
-          } else {console.log('Wrong password, try again');}
+            userName = (`The user ${result[0].username} logged in`);
+            idd = result[i].uid;
+          } else {console.log('Wrong password entered');}
         }
-        console.log(uid);
-        return uid;
+        console.log(userName);
+        console.log('User id ' + idd);
       });
     }
 
     if (data.message === "message") {
-      let values = [];
-      console.log(uid);
-      values.push([data.user.value, data.user.uid]);
-      let sql = "INSERT INTO messages (message, uid_fk) VALUES ?";
-      connection.query(sql, [values], function (err, result) {
-        console.log("Message added to database");
+      //console.log(uid);
+      connection.query(("INSERT INTO messages (message, uid_fk) VALUES ?"), [[[data.user.value, data.user.uid]]], function (err, result) {
+        console.log(`Message ${data.user.value} added to database`);
       });
       console.log("Received a message: " + data.user.value);
     }
