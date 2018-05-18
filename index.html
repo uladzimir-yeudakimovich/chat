@@ -11,7 +11,7 @@
   <div class="content">
     <header><h1>CHAT</h1></header>
     <main>
-      <button onclick="document.getElementById('id01').style.display='block'">Sign Up</button>
+      <button id="registrationButton" onclick="document.getElementById('id01').style.display='block'">Sign Up</button>
       <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span>
         <form class="modal-content" name="registration">
@@ -29,7 +29,7 @@
         </form>
       </div>
 
-      <button onclick="document.getElementById('id02').style.display='block'">Log In</button>
+      <button id="loginButton" onclick="document.getElementById('id02').style.display='block'">Log In</button>
       <div id="id02" class="modal">
         <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close">&times;</span>
         <form class="modal-content" name="login">

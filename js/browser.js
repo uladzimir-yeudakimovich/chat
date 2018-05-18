@@ -8,7 +8,7 @@ const uid = 0;
 
 document.forms.registration.onsubmit = function() {
   document.getElementById('id01').style.display = 'none';
-  document.getElementById('messageField').className = '';
+  document.getElementById('registrationButton').style.display = 'none';
 
   let username = this.username.value;
   let password = this.psw.value;
@@ -27,6 +27,8 @@ document.forms.registration.onsubmit = function() {
 
 document.forms.login.onsubmit = function() {
   document.getElementById('id02').style.display = 'none';
+  document.getElementById('registrationButton').style.display = 'none';
+  document.getElementById('loginButton').style.display = 'none';
   document.getElementById('messageField').className = '';
 
   let username = this.login.value;
