@@ -39,10 +39,10 @@ wsServer.on('connection', function(ws) {
     }
 
     if (data.message === "login" || data.message === "message") {
-      let idd = 0;
       connection.query(("SELECT * FROM users WHERE username = " + mysql.escape(data.user.username)), function (err, result) {
-        if (result.length == 0) {console.log(`User with the name ${data.user.username} does not exist`);
-        } else {
+        if (result.length == 0  && data.message === "login") {
+          console.log(`User with the name ${data.user.username} does not exist`);
+        } else if (result.length > 0  && data.message === "login") {
           for (let i = 0; i < result.length; i++) {
             if(result[i].password == data.user.password) {
               userName = (`The user ${result[0].username} logged in`);
@@ -52,7 +52,7 @@ wsServer.on('connection', function(ws) {
           console.log(userName);
         }
 
-        if (idd > 0) {
+        if (data.user.value != undefined) {
           connection.query(("INSERT INTO messages (message, uid_fk) VALUES ?"), [[[data.user.value, idd]]], function (err, result) {
             console.log(`Message ${data.user.value} added to database`);
           });
