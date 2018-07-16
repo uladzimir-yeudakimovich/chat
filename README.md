@@ -1,6 +1,6 @@
 # chat 
 
-You have to install NodeJs and MySQL softwares and create following tables:
+You have to install NodeJs and MySQL softwares and create following tables: 
 
 User table contains all the users registration details. 
 
